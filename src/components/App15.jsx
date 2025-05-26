@@ -7,7 +7,7 @@ export default function App15() {
   const colorRef = useRef();
 
   const [sum, setSum] = useState(null);
-  const [textColor, setTextColor] = useState("blue");
+  const [textColor, setTextColor] = useState("black"); // default is black
 
   const handleNameSubmit = () => {
     alert(nameRef.current.value);
