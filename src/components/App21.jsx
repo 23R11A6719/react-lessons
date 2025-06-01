@@ -1,22 +1,25 @@
-// App21.jsx
-import React, { useState } from "react";
+import React from "react";
 import Register from "./Register";
 import Login from "./Login";
-
-const App21 = () => {
+import { useState } from "react";
+import { createContext } from "react";
+export const AppContext = createContext();
+export default function App21() {
   const [users, setUsers] = useState([]);
-  const [showLogin, setShowLogin] = useState(false);
-
   return (
     <div>
-      <h1>{showLogin ? "Login" : "Register"}</h1>
-      {!showLogin ? (
-        <Register setUsers={setUsers} users={users} setShowLogin={setShowLogin} />
-      ) : (
-        <Login users={users} />
-      )}
+      <AppContext.Provider value={{ users, setUsers }}>
+        <h1>App21</h1>
+        <h2>Assignment</h2>
+        <div style={{ display: "flex" }}>
+          <div>
+            <Register />
+          </div>
+          <div>
+            <Login />
+          </div>
+        </div>
+      </AppContext.Provider>
     </div>
   );
-};
-
-export default App21;
+}
