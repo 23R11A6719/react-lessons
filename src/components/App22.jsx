@@ -1,27 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./App22.css";
+export default function App22() {
+  const [tmp, setTmp] = useState();
 
-const App22 = () => {
-  const [temp, setTemp] = useState("");
+  const fetchWeather = async () => {
+    const res = await axios.get("http://localhost:8080/weather");
+    setTmp(res.data);
+  };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/weather")
-      .then((res) => {
-        setTemp(res.data.temperature);
-      })
-      .catch((err) => {
-        console.error("Error fetching temperature:", err);
-      });
+    fetchWeather();
   }, []);
-
-  return (
-    <div className="card">
-      <h1 className="title">Current</h1>
-      <p className="temperature">{temp}</p>
-    </div>
-  );
-};
-
-export default App22;
+  return <div style={{backgroundColor:'pink'}}>{tmp}</div>;
+}
